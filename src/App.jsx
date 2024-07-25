@@ -13,9 +13,17 @@ const allUsers = [
 function App() {
   const [users, setUsers] = useState(allUsers)
 
+  function shuffle(array) {
+    let shuffledArray = array.slice();
+    for (let i = shuffledArray.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+    }
+    return shuffledArray;
+  }
+
   function handleSearch(text) {
-    console.log(text)
-    const filteredUsers = users.filter(user => user.includes(text))
+    const filteredUsers = allUsers.filter(user => user.includes(text))
     setUsers(filteredUsers)
   }
   return (
