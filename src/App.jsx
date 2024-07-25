@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import Search from './Search'
 import './App.css'
 
@@ -22,10 +22,11 @@ function App() {
     return shuffledArray;
   }
 
-  function handleSearch(text) {
+  const handleSearch = useCallback((text) => {
+    console.log(users[0])
     const filteredUsers = allUsers.filter(user => user.includes(text))
     setUsers(filteredUsers)
-  }
+  }, [users])
   return (
     <div className="container">
       <div className="content">
